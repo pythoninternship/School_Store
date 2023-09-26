@@ -1,0 +1,355 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Order Form </title>
+    <link rel="stylesheet" href="style.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{% static 'assets/css/order_form.css' %}">
+     <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+      <link href="{% static 'https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900' %}" rel="stylesheet">
+
+       <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-grad-school.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/lightbox.css' %}">
+
+    <style>
+        .section.main-banner {
+    margin-top: 80px; /* Adjust the margin-top value as needed */
+}
+.section.main-banner {
+    padding-top: 20px; /* Adjust the padding-top value as needed */
+}
+
+.welcome-box {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: white;
+        border: 5px solid #ccc;
+        color: black;
+        }
+    .welcome-message {
+        color: orange; /* Set the text color to black to contrast with the white background */
+    }
+     .container {
+        margin-top: 280px;
+    }
+    </style>
+   </head>
+<body>
+<header class="main-header clearfix" role="header">
+    <div class="logo">
+        <img src="{% static 'assets/images/school.jpeg' %}" alt="St. Albert's School" class="school-logo"
+             style="width: 50px; height: 50px;">&nbsp;&nbsp;
+        <a href="#"><em>St.Albert's</em> Store</a>
+    </div>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+        <ul class="main-menu">
+            {% if user.is_authenticated %}
+<li class="welcome-message" style="font-weight: bold;">
+    <span style="border: 4px solid #ffff; border-radius: 10%; padding: 10px;">Hello, {{ user.username }}</span>
+</li>
+
+<!--                    <li><a href="{% url 'logout' %}">Logout</a></li>-->
+            {% else %}
+<!--                <li><a href="{% url 'register_view' %}">Register</a></li>-->
+<!--                <li><a href="{% url 'login_view' %}">Login</a></li>-->
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+  <div class="container" >
+   <div class="title">Registration
+        <a href="{% url 'logout' %}">
+            <img src="{% static 'assets/images/logout.jpeg' %}" alt="Logout" width="80" height="80" style="float: right; margin-left: 10px;">
+        </a>
+    </div>
+
+      <br><br>
+    <div class="content">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details"><h5>Full Name</h5></span>
+                    <input type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details"><h5>Date of Birth</h5></span>
+                    <input type="date" placeholder="Enter your date of birth" required>
+                </div>
+                <div class="input-box">
+                    <span class="details"><h5>Age</h5></span>
+                    <input type="number" placeholder="Enter your age" required>
+                </div>
+                 <div class="input-box">
+                 <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title"><h5>Gender</h5></span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+                 </div>
+                <div class="input-box">
+                    <span class="details"><h5>Phone Number</h5></span>
+                    <input type="text" placeholder="Enter your phone number" required>
+                </div>
+                <div class="input-box">
+                    <span class="details"><h5>Email</h5></span>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details"><h5>Address</h5></span>
+                    <textarea placeholder="Enter your address" required></textarea>
+                </div>
+            <div class="input-box">
+    <span class="details"><h5>Department</h5></span>
+    <select name="department" required>
+        <option value="">Select your department</option>
+        {% for department in departments %}
+        <option value="{{ department.id }}">{{ department.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="input-box">
+    <span class="details"><h5>Courses</h5></span>
+    <select name="course" required>
+        <option value="">Select your course</option>
+        <!-- Courses will be populated dynamically based on department selection using JavaScript -->
+    </select>
+</div>
+<div class="input-box">
+    <span class="details"><h5>Purpose</h5></span>
+    <select name="purpose" required>
+        <option value="">Select your purpose</option>
+        {% for purpose in purposes %}
+        <option value="{{ purpose.0 }}">{{ purpose.1 }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="input-box">
+    <span class="details"><h5>Materials Provide</h5></span>
+    {% for material in materials %}
+    <label><input type="checkbox" name="materials" value="{{ material.0 }}"> {{ material.1 }}</label>
+    {% endfor %}
+</div>
+
+         </div>
+<div class="button">
+    <input type="submit" id="submitBtn" value="Submit" class="submit-button"><br>
+    <p>{{ confirmation_message }}</p>
+
+</div>
+
+
+        </form>
+    </div>
+</div>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'assets/js/tabs.js' %}"></script>
+    <script src="{% static 'assets/js/video.js' %}"></script>
+    <script src="{% static 'assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'https://code.jquery.com/jquery-3.6.0.min.js' %}"></script>
+
+<script>
+  $(document).ready(function () {
+    // Handle the change event on the department dropdown
+    $('select[name="department"]').on('change', function () {
+        console.log('Dropdown change event triggered'); // Add this line
+        var departmentId = $(this).val();
+        if (departmentId) {
+            $.ajax({
+                url: '/get_courses/', // Update this URL to match your Django view URL
+                data: { 'department_id': departmentId },
+                dataType: 'json',
+                success: function (data) {
+                    var coursesSelect = $('select[name="course"]');
+                    coursesSelect.empty();
+                    coursesSelect.append($('<option>', {
+                        value: '',
+                        text: 'Select your course'
+                    }));
+                    $.each(data.courses, function (key, value) {
+                        coursesSelect.append($('<option>', {
+                            value: value.id,
+                            text: value.name
+                        }));
+                    });
+                }
+            });
+        } else {
+            $('select[name="course"]').empty();
+        }
+    });
+});
+
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+          if($(e.target).hasClass('external')) {
+            return;
+          }
+          e.preventDefault();
+          $('#menu').removeClass('active');
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+
+
+       // jQuery is required for this code to work
+    $(document).ready(function () {
+        // Handle the click event on the dropdown toggle
+        $(".dropdown-toggle").click(function (e) {
+            e.preventDefault();
+            var dropdownContent = $(this).next(".dropdown-content");
+
+            // Toggle visibility of the dropdown content
+            dropdownContent.toggle();
+
+            // Close other open dropdowns (if any)
+            $(".dropdown-content").not(dropdownContent).hide();
+        });
+
+        // Handle clicks outside the dropdown to close it
+        $(document).click(function (e) {
+            if (!$(e.target).closest(".has-submenu").length) {
+                $(".dropdown-content").hide();
+            }
+        });
+    });
+
+    // Function to validate the form fields
+    function validateForm() {
+        var form = document.querySelector('form');
+        var inputs = form.querySelectorAll('input, select, textarea');
+
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            // Check if the field is required and empty
+            if (input.hasAttribute('required') && input.value.trim() === '') {
+                alert('Please fill out all required fields before submitting.');
+                return false; // Prevent form submission
+            }
+        }
+
+        return true; // Continue with form submission
+    }
+// Function to show the confirmation dialog
+function showConfirmation() {
+    // Validate the form before showing the confirmation dialog
+    if (validateForm()) {
+        // Display a custom confirmation dialog
+        var confirmed = confirm('Are you sure you want to submit this form?');
+
+        // If the user clicks OK in the custom dialog, log out and redirect to the home page
+        if (confirmed) {
+            // Check if the user is logged in (you can use your own logic here)
+            var userIsLoggedIn = true; // Replace this with your authentication check
+
+            if (userIsLoggedIn) {
+                // Log out the user and clear session history after a delay
+                logoutAndRedirect();
+            } else {
+                // User is not logged in, so simply redirect to the home page
+                window.location.href = '/'; // Replace with the URL of your home page
+            }
+        }
+    }
+}
+
+// Function to simulate logout and redirect
+function logoutAndRedirect() {
+    // Simulate logout and redirect to the home page after a delay
+    alert('Simulating logout and redirect to the home page');
+
+    // Add a delay (e.g., 1 second) to ensure the alert is displayed
+    setTimeout(function () {
+        // Clear the session history (disable back and forward navigation)
+        window.location.replace('/'); // Replace with the URL of your home page
+    }, 1000); // Delay for 1 second
+}
+
+// Attach the showConfirmation function to the submit button's click event
+document.getElementById('submitBtn').addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent the default form submission behavior
+    showConfirmation(); // Show the confirmation dialog after validation
+});
+
+    </script>
+
+</body>
+</html>

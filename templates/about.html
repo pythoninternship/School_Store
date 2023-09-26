@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+<!-- ***** Why Choose Us Section ***** -->
+<section class="section why-us" data-section="section2" style="height: 850px; margin-left: -20%; margin-right: -20%;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2><b>About <br>
+            St. Albert's School?</b></h2>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div id='tabs'>
+          <ul>
+            <li><a href='#tabs-1'>Best Education</a></li>
+            <li><a href='#tabs-2'>Top Management</a></li>
+            <li><a href='#tabs-3'>Quality Meeting</a></li>
+          </ul>
+          <section class='tabs-content'>
+            <article id='tabs-1'>
+              <div class="row">
+                <div class="col-md-8"> <!-- Increase the width here -->
+                  <img src="{% static 'assets/images/choose-us-image-01.png' %}" alt="">
+                </div>
+                <div class="col-md-4"> <!-- Remaining width (12 - 8) -->
+                  <h4>Best Education</h4>
+                  <p>St. Albert's School is committed to providing the best education, fostering academic excellence, and nurturing personal growth in its students.</p>
+                </div>
+              </div>
+            </article>
+            <article id='tabs-2'>
+              <div class="row">
+                <div class="col-md-8"> <!-- Increase the width here -->
+                  <img src="{% static 'assets/images/choose-us-image-02.png' %}" alt="">
+                </div>
+                <div class="col-md-4"> <!-- Remaining width (12 - 8) -->
+                  <h4>Top Level</h4>
+                  <p>The best management at St. Albert's School is characterized by a dedicated team of experienced professionals who prioritize the holistic development and well-being of every student.</p>
+                </div>
+              </div>
+            </article>
+            <article id='tabs-3'>
+              <div class="row">
+                <div class="col-md-8"> <!-- Increase the width here -->
+                  <img src="{% static 'assets/images/choose-us-image-03.png' %}" alt="">
+                </div>
+                <div class="col-md-4"> <!-- Remaining width (12 - 8) -->
+                  <h4>Quality Meeting</h4>
+                  <p>The Quality meeting at St. Albert's School was a productive session where teachers and administrators discussed ways to improve educational standards and enhance the overall learning experience for students.</p>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+{% endblock %}
